@@ -1,0 +1,149 @@
+<div data-role="page" id="page1">
+    <div data-role="header">Login Page</div>
+    
+    <input type="text"id="name" placeholder="Username"/>
+    <input type="text"id="name" placeholder="Password"/>
+       <div id="write"></div>
+     <div data-role="content">     
+          <p><a onclick="saveStatusLocally()" href="#ButtonEventPage" data-role="button"data-transition="pop" >Submit</a></p> 	               
+    </div>
+</div>
+<div data-role="page" id="ButtonEventPage">
+     <div data-role="header">
+     	  <a data-rel="back" data-icon="home">Home</a>
+          <h1>Page2</h1>
+    </div>
+    <div data-role="content">
+        <h1><a onclick="readStatus2()">Hello</a></h1>
+<div id="write2"></div>        
+        <div id="map1"></div>
+   <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script> 
+<p> You are here!! </p>
+         <script>
+    function fbShare(url, title, descr, image, winWidth, winHeight) {
+        var winTop = (screen.height / 2) - (winHeight / 2);
+        var winLeft = (screen.width / 2) - (winWidth / 2);
+        window.open('http://www.facebook.com/sharer.php?s=100&p[title]=' + title + '&p[summary]=' + descr + '&p[url]=' + url + '&p[images][0]=' + image, 'sharer', 'top=' + winTop + ',left=' + winLeft + ',toolbar=0,status=0,width=' + winWidth + ',height=' + winHeight);
+    }
+</script>
+       <a href="javascript:fbShare('http://jsfiddle.net/stichoza/EYxTJ/', 'Fb Share', 'Facebook share popup', 'http://goo.gl/dS52U', 520, 350)"><h4> Share weather information on facebook !!</h4> </a>
+        
+         <a href="https://twitter.com/" target="_blank">
+             <h4> Share weather information on twitter !!</h4>
+            </a>
+       
+    </div>
+    
+</div>
+    
+
+
+
+    ------------------------------------------
+
+var stores = Array();
+var input1 = document.getElementById('name');
+
+
+var returnMsg;
+function clearStorage() {
+    stores = Array();
+    localStorage.clear("database");
+    document.getElementById('write').innerHTML = "storage cleared.";
+}
+
+function saveStatusLocally() {
+    var stringToSave = document.getElementById('name').value ;
+  //  var stringToSave1 = document.getElementById('sports').value ;
+    //var stringToSave2 = document.getElementById('player').value ;
+    if ((stringToSave == null) || (stringToSave == "") /*|| (stringToSave1 == null) || (stringToSave1 == "") || (stringToSave2 == null) || (stringToSave2 == "")*/ ) {
+        document.getElementById('write').innerHTML = "nothing to store.";
+    } 
+    else {
+        stores.push(stringToSave);
+        //stores.push(stringToSave1);
+        //stores.push(stringToSave2);
+        input1.value = "";
+        //input2.value = "";
+        //input3.value = "";
+        
+        window.localStorage.setItem("database", stores.join(" "));
+        
+        document.getElementById('write').innerHTML = "data stored.";
+
+        setTimeout(function() {
+            document.getElementById('write').innerHTML = "";
+        }, 1000);
+
+    }
+}
+
+
+function readStatus() {
+   
+    if (window.localStorage.getItem("database") == null) {
+        document.getElementById('write').innerHTML = "nothing stored.";
+    } else {
+        document.getElementById('write').innerHTML = "You Values: " + window.localStorage.getItem("database");
+    }
+}
+
+function clearStorage2() {
+   
+    stores = Array();
+    localStorage.clear("database");
+    document.getElementById('write2').innerHTML = "storage cleared.";
+}
+
+function readStatus2() {
+   
+    if (window.localStorage.getItem("database") == null) {
+        document.getElementById('write').innerHTML = "nothing stored.";
+    } else {
+        document.getElementById('write2').innerHTML = "Hello  " + window.localStorage.getItem("database");
+    }
+}
+//--------------------
+//---Current Location----
+var mapProp={
+    zoom:5,
+    mapTypeId:'roadmap'
+    
+};
+
+
+var map1=new google.maps.Map(
+  document.getElementById("map1"),mapProp);
+var markers = [];
+if(navigator.geolocation) {
+   navigator.geolocation.getCurrentPosition(function(position) {
+      var pos = new google.maps.LatLng(position.coords.latitude,
+                                       position.coords.longitude);
+
+      var infowindow = new google.maps.InfoWindow({
+        map: map1,
+        position: pos,
+       
+ });
+    map1.setCenter(pos);
+        
+        
+        var marker=new google.maps.Marker({
+  position:pos,
+  });
+
+marker.setMap(map1);
+
+    }, function() {
+      handleNoGeolocation(true);
+    });
+  
+  }
+
+----------
+
+#map1{
+    width: 200px;
+    height: 200px;
+}
+

@@ -1,0 +1,49 @@
+<div data-role="page" id="page1">
+    <div data-role="header">Login Page</div>
+    
+    <input type="text"id="name" placeholder="Username"/>
+    <input type="text"id="name" placeholder="Password"/>
+       <div id="write"></div>
+     <div data-role="content">     
+          <p><a onclick="saveStatusLocally()" href="#ButtonEventPage" data-role="button"data-transition="pop" 
+
+>Submit</a></p> 	               
+    </div>
+</div>
+<div data-role="page" id="ButtonEventPage">
+     <div data-role="header">
+     	  <a data-rel="back" data-icon="home">Home</a>
+          <h1>Page2</h1>
+    </div>
+    <div data-role="content">
+        <h1><a onclick="readStatus2()">Hello</a></h1>
+<div id="write2"></div>        
+        <br></br>
+        <div id="map1"></div>
+   <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script> 
+<p> You are here!! </p>
+         <script>
+    function fbShare(url, title, descr, image, winWidth, winHeight) {
+        var winTop = (screen.height / 2) - (winHeight / 2);
+        var winLeft = (screen.width / 2) - (winWidth / 2);
+        window.open('http://www.facebook.com/sharer.php?s=100&p[title]=' + title + '&p[summary]=' + descr + '&p[url]=' + 
+
+url + '&p[images][0]=' + image, 'sharer', 'top=' + winTop + ',left=' + winLeft + ',toolbar=0,status=0,width=' + winWidth + 
+
+',height=' + winHeight);
+    }
+</script>
+       <a href="javascript:fbShare('http://jsfiddle.net/stichoza/EYxTJ/', 'Fb Share', 'Facebook share popup', 
+
+'http://goo.gl/dS52U', 520, 350)"><h4> Share weather information on facebook !!</h4> </a>
+        
+         <a href="https://twitter.com/" target="_blank">
+             <h4> Share weather information on twitter !!</h4>
+            </a>
+       
+    </div>
+    
+</div>
+    
+
+

@@ -1,0 +1,31 @@
+#map {
+    width=800px;
+    height=800px;
+}
+#h2{
+   background:#6699CC;
+}
+#button{
+    background:#E9967A;
+}
+.weatherModule {
+    background:#FFFFFF;
+    height:100px;
+    width:300px;
+   // border: 1px solid #ccc;
+    padding: 1em;
+}
+
+
+.currentConditions {
+    float: left;
+    color:#999FF;
+}
+.weatherModule {
+    padding: 1em;
+}
+
+.currentIcon {
+    float: left;
+    margin: 0 .75em;
+}

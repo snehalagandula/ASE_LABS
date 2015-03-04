@@ -1,0 +1,100 @@
+var stores = Array();
+var input1 = document.getElementById('name');
+
+
+var returnMsg;
+function clearStorage() {
+    stores = Array();
+    localStorage.clear("database");
+    document.getElementById('write').innerHTML = "storage cleared.";
+}
+
+function saveStatusLocally() {
+    var stringToSave = document.getElementById('name').value ;
+  //  var stringToSave1 = document.getElementById('sports').value ;
+    //var stringToSave2 = document.getElementById('player').value ;
+    if ((stringToSave == null) || (stringToSave == "") /*|| (stringToSave1 == null) || (stringToSave1 == "") || 
+
+(stringToSave2 == null) || (stringToSave2 == "")*/ ) {
+        document.getElementById('write').innerHTML = "nothing to store.";
+    } 
+    else {
+        stores.push(stringToSave);
+        //stores.push(stringToSave1);
+        //stores.push(stringToSave2);
+        input1.value = "";
+        //input2.value = "";
+        //input3.value = "";
+        
+        window.localStorage.setItem("database", stores.join(" "));
+        
+        document.getElementById('write').innerHTML = "data stored.";
+
+        setTimeout(function() {
+            document.getElementById('write').innerHTML = "";
+        }, 1000);
+
+    }
+}
+
+
+function readStatus() {
+   
+    if (window.localStorage.getItem("database") == null) {
+        document.getElementById('write').innerHTML = "nothing stored.";
+    } else {
+        document.getElementById('write').innerHTML = "You Values: " + window.localStorage.getItem("database");
+    }
+}
+
+function clearStorage2() {
+   
+    stores = Array();
+    localStorage.clear("database");
+    document.getElementById('write2').innerHTML = "storage cleared.";
+}
+
+function readStatus2() {
+   
+    if (window.localStorage.getItem("database") == null) {
+        document.getElementById('write').innerHTML = "nothing stored.";
+    } else {
+        document.getElementById('write2').innerHTML = "Hello  " + window.localStorage.getItem("database");
+    }
+}
+//--------------------
+//---Current Location----
+var mapProp={
+    zoom:5,
+    mapTypeId:'roadmap'
+    
+};
+
+
+var map1=new google.maps.Map(
+  document.getElementById("map1"),mapProp);
+var markers = [];
+if(navigator.geolocation) {
+   navigator.geolocation.getCurrentPosition(function(position) {
+      var pos = new google.maps.LatLng(position.coords.latitude,
+                                       position.coords.longitude);
+
+      var infowindow = new google.maps.InfoWindow({
+        map: map1,
+        position: pos,
+       
+ });
+    map1.setCenter(pos);
+        
+        
+        var marker=new google.maps.Marker({
+  position:pos,
+  });
+
+marker.setMap(map1);
+
+    }, function() {
+      handleNoGeolocation(true);
+    });
+  
+  }

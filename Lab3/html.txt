@@ -1,0 +1,16 @@
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
+
+<div class="weatherModule">
+<p class="currentConditionsorigin">
+    <div class="currentIconorigin"></div></p>
+    <p class="currentConditionsdest">
+<div class="currentIcondest"></div></p>
+</div>
+<h2></h2>
+        <input id="origin" placeholder="Start Point"/>
+
+
+    <input id="dest" placeholder="End Point" />
+
+<button id="button">Search</button>
+<div id="map_canvas" style="height: 300px; width: 600px"></div>
